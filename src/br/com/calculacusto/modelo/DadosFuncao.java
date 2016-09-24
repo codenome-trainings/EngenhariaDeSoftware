@@ -1,6 +1,6 @@
 package br.com.calculacusto.modelo;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 public class DadosFuncao {
 
@@ -8,7 +8,8 @@ public class DadosFuncao {
 	private int registro;
 	private int itens;
 	private int pontoDeFuncao;
-
+	
+	
 	// Tabela de Identificação da Complexidade dos dados
 	public String calculaComplexidadeDeDados() {
 
