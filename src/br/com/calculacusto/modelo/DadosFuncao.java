@@ -74,7 +74,7 @@ public class DadosFuncao {
 
 	int referencia;
 
-	// Tabela de Identificação da coplexidade de Entradas Externas
+	// Tabela de Identificação da complexidade de Entradas Externas
 	public String calculaComplexidadeDeEntradasExternas() {
 
 		if (referencia == 0 || referencia == 1) {
