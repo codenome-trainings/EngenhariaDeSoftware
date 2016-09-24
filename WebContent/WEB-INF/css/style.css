@@ -1,0 +1,136 @@
+/*SELETORES*/
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.4em;
+    font-weight: 300;
+}
+
+p, ul li {
+    line-height: 1.8em;
+}
+
+p {
+    margin-top: 25px;
+}
+
+ul li p {
+    margin-top: 0px;
+}
+
+a {
+color: #3FA9F5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #3FA9F5;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 3em;
+    margin-top: 0px;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1em;
+    margin-top: 0;
+}
+
+article h1 {
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #EDF1F1;
+    margin-bottom: 30px;
+}
+
+button {
+    background-color: #3FA9F5 !important;
+    border-color: #40a0ed !important;
+}
+
+button {
+    margin-top: 20px;
+    padding: 15px 20px !important;
+}
+
+button:hover {
+    background-color: rgba(66, 175, 255, 0.85) !important;
+}
+
+button a {
+    color: rgb(245,245,245);
+
+}
+
+button a:hover {
+    text-decoration: none;
+    color: rgb(245,245,245);
+}
+
+.title {
+    margin-top: 70px;
+}
+
+header {
+    margin-bottom: 0px;
+}
+
+header a {
+    border: 0px !important;
+}
+
+header a:hover {
+    border-bottom: 1px solid #3FA9F5 !important;
+    border-bottom-width: 1px !important;
+}
+
+footer {
+    bottom:0;
+    width:100%;
+}
+
+footer img {
+    float: left;
+    padding: 0px 20px 40px 0px;
+}
+
+footer p {
+    padding: 13px 0px 0px 0px;
+    color: #c1c1c1;
+}
+
+footer p em {
+    color: #ffb6c9;
+}
+
+/*CLASSES*/
+.line-bottom {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border-bottom: 0.1em #EDF1F1 solid;
+}
+
+.space-light {
+    margin: 30px 0px;
+}
+
+.fixo {
+    position: fixed;
+    width: 14%;
+}
+
+.espaco-superior {
+    margin-top: 30px;
+}
+
+header ul li button {
+    margin-top: 0px;
+}
+
+.space-left{
+    margin-left: 15px;
+}
