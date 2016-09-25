@@ -1,30 +1,30 @@
 package br.com.calculacusto.modelo.linguagens;
 
-public class Assembler implements LinguagensDeProgramacao {
+public class Lincii implements LinguagensDeProgramacao{
 
 	@Override
 	public String getNome() {
-		return "assembler";
+		return "lincii";
 	}
 
 	@Override
 	public double getMedia() {
-		return 119;
+		return 23;
 	}
 
 	@Override
 	public double getMediana() {
-		return 98;
+		return 30;
 	}
 
 	@Override
 	public double getMenor() {
-		return 25;
+		return 22;
 	}
 
 	@Override
 	public double getMaior() {
-		return 320;
+		return 38;
 	}
 
 }

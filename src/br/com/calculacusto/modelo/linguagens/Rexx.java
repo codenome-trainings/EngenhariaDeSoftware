@@ -1,30 +1,30 @@
 package br.com.calculacusto.modelo.linguagens;
 
-public class Assembler implements LinguagensDeProgramacao {
+public class Rexx implements LinguagensDeProgramacao{
 
 	@Override
 	public String getNome() {
-		return "assembler";
+		return "rexx";
 	}
 
 	@Override
 	public double getMedia() {
-		return 119;
+		return 77;
 	}
 
 	@Override
 	public double getMediana() {
-		return 98;
+		return 80;
 	}
 
 	@Override
 	public double getMenor() {
-		return 25;
+		return 50;
 	}
 
 	@Override
 	public double getMaior() {
-		return 320;
+		return 80;
 	}
 
 }

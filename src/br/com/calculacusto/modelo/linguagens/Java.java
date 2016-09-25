@@ -1,30 +1,30 @@
 package br.com.calculacusto.modelo.linguagens;
 
-public class Assembler implements LinguagensDeProgramacao {
+public class Java implements LinguagensDeProgramacao{
 
 	@Override
 	public String getNome() {
-		return "assembler";
+		return "java";
 	}
 
 	@Override
 	public double getMedia() {
-		return 119;
+		return 53;
 	}
 
 	@Override
 	public double getMediana() {
-		return 98;
+		return 53;
 	}
 
 	@Override
 	public double getMenor() {
-		return 25;
+		return 14;
 	}
 
 	@Override
 	public double getMaior() {
-		return 320;
+		return 134;
 	}
 
 }

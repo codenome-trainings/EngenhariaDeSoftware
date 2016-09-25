@@ -1,30 +1,30 @@
 package br.com.calculacusto.modelo.linguagens;
 
-public class Assembler implements LinguagensDeProgramacao {
+public class Lotusnotes implements LinguagensDeProgramacao {
 
 	@Override
 	public String getNome() {
-		return "assembler";
+		return "lotus notes";
 	}
 
 	@Override
 	public double getMedia() {
-		return 119;
+		return 23;
 	}
 
 	@Override
 	public double getMediana() {
-		return 98;
+		return 21;
 	}
 
 	@Override
 	public double getMenor() {
-		return 25;
+		return 19;
 	}
 
 	@Override
 	public double getMaior() {
-		return 320;
+		return 40;
 	}
 
 }

@@ -1,30 +1,30 @@
 package br.com.calculacusto.modelo.linguagens;
 
-public class Assembler implements LinguagensDeProgramacao {
+public class CognosImpromptuScripts implements LinguagensDeProgramacao {
 
 	@Override
-	public String getNome() {
-		return "assembler";
+	public String getNome() {	
+		return "Cognos Impromptu Scripts";
 	}
 
 	@Override
 	public double getMedia() {
-		return 119;
+		return 47;
 	}
 
 	@Override
-	public double getMediana() {
-		return 98;
+	public double getMediana() {	 
+		return 42;
 	}
 
 	@Override
 	public double getMenor() {
-		return 25;
+		return 30;
 	}
 
 	@Override
 	public double getMaior() {
-		return 320;
+		return 100;
 	}
 
 }

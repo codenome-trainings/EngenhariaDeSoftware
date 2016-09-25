@@ -1,30 +1,30 @@
 package br.com.calculacusto.modelo.linguagens;
 
-public class Assembler implements LinguagensDeProgramacao {
+public class Siebel implements LinguagensDeProgramacao{
 
 	@Override
 	public String getNome() {
-		return "assembler";
+		return "siebel";
 	}
 
 	@Override
 	public double getMedia() {
-		return 119;
+		return 59;
 	}
 
 	@Override
 	public double getMediana() {
-		return 98;
+		return 60;
 	}
 
 	@Override
 	public double getMenor() {
-		return 25;
+		return 51;
 	}
 
 	@Override
 	public double getMaior() {
-		return 320;
+		return 60;
 	}
 
 }

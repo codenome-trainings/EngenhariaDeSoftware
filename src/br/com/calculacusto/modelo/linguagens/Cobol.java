@@ -1,30 +1,30 @@
 package br.com.calculacusto.modelo.linguagens;
 
-public class Assembler implements LinguagensDeProgramacao {
+public class Cobol implements LinguagensDeProgramacao {
 
 	@Override
 	public String getNome() {
-		return "assembler";
+		return "cobol";
 	}
 
 	@Override
 	public double getMedia() {
-		return 119;
+		return 61;
 	}
 
 	@Override
 	public double getMediana() {
-		return 98;
+		return 55;
 	}
 
 	@Override
 	public double getMenor() {
-		return 25;
+		return 23;
 	}
 
 	@Override
 	public double getMaior() {
-		return 320;
+		return 279;
 	}
 
 }
