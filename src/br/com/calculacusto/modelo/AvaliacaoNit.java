@@ -1,20 +1,42 @@
 package br.com.calculacusto.modelo;
 
-import java.util.Vector;
-
 public class AvaliacaoNit {
-	
+
 	private int nota;
-	private Vector<Integer> notas = new Vector<>();
+	private Nit nit;
+	private Projeto projeto;
 	
-	public void adicionaNota (int nota) {
-        notas.add(nota);
+	public AvaliacaoNit(int nota, Nit nit, Projeto projeto) {
+		this.nota = nota;
+		this.nit = nit;
+		this.projeto = projeto;
 	}
 
-	public void calculaNit() {
-        for (Integer valor : notas) {
-            this.nota += valor;
-        }
-    }
-	
+	public AvaliacaoNit() {
+	}
+
+	public int getNota() {
+		return nota;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
+	}
+
+	public Nit getNit() {
+		return nit;
+	}
+
+	public void setNit(Nit nit) {
+		this.nit = nit;
+	}
+
+	public Projeto getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
+	}
+
 }
