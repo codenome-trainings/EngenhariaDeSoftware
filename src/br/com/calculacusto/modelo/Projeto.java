@@ -6,7 +6,7 @@ import java.util.List;
 public class Projeto {
 
 	private String nome;
-	private int pontoDeFuncao;
+	private double pontoDeFuncao;
 	private double fatorDeAjuste;
 	private int nit;
 	private double qsm;
@@ -18,8 +18,67 @@ public class Projeto {
 	private double valorDeVenda;
 	private double lucro;
 	
+	/*
+	 * Cosntantes essenciais para o cocomo
+	 */
+	private final double AB = 2.4;
+	private final double BB = 1.05;
+	private final double DB = 0.38;
+	
 	private LinguagemDeProgramacao linguagemDeProgramacao;
 	private List<AvaliacaoNit> avaliacoesNit = new ArrayList<>();
+	
+	
+	/*
+	 * 
+	 * Informações importantes para o calculo
+	 * 
+	 * 1. Achar o PFB (Ponto de função bruta)
+	 * 	  Que é obtido pela fórmula
+	 *    PFB = PF1 + PF2;
+	 *    
+	 *    Esses dados vem das funções:
+	 *    	- PF1:
+	 *    		- defineValorPontoDeFuncaoInterno();
+	 *    		- defineValorPontoDeFuncaoExterno();
+	 *    	- PF2:
+	 *    		- definePontoDeFuncaoDeEntradasExternas();
+	 *    		- definePontoDeFuncaoDeSaidasExternas();
+	 *    		- definePontoDeFuncaoDeConsultasExternas();
+	 * 
+	 * Após esses dados serem obtidos, é só aplicar a formula para achar o Ponto de Função Bruta:
+	 * PFB = PF1 + PF2;
+	 * 
+	 * 
+	 * 2. Avaliar NIT é só pegar o tota de toda avaiação manual.
+	 *    Como esse total vamos achar o VFA (Valor Fator de Ajustes). Através da formula:
+	 *    VFA = (NIT * 0.01) + 0.65;
+	 *    
+	 *    O getFatorDeAjuste() ira retornar essa formula.
+	 * 
+	 * 3. Ponto de Função
+	 *    Com os valores anteriores, conseguimos agora achar o ponto de função através da fórmula:
+	 *    PF = PFB * VFA;
+	 * 
+	 * 3. COCOMO
+	 * Ao entrar no processo do COCOMO. Ele servirá para achar nosso esforço. E para isso, precisaremos dos dados anteriores.
+	 * 
+	 * KLOC = PF * QSM;
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	//Preciso ainda implementar a busca da soma dos valores pf1 e pf2
+	public double calculaPontoDeFuncaoBruta() {
+		double pf1 = 0, pf2 = 0;
+		return pf1 + pf2;
+	}
+	
+	public double kaloc() {
+		return getPontoDeFuncao() * this.linguagemDeProgramacao.getMediana(); //Por exemplo!!!
+	}
 	
 	
 	public String getNome() {
@@ -30,8 +89,8 @@ public class Projeto {
 		this.nome = nome;
 	}
 
-	public int getPontoDeFuncao() {
-		return pontoDeFuncao;
+	public double getPontoDeFuncao() {
+		return calculaPontoDeFuncaoBruta() * getFatorDeAjuste();
 	}
 
 	public void setPontoDeFuncao(int pontoDeFuncao) {
@@ -39,7 +98,7 @@ public class Projeto {
 	}
 
 	public double getFatorDeAjuste() {
-		return fatorDeAjuste;
+		return ((getNit() * 0.01) + 0.65);
 	}
 
 	public void setFatorDeAjuste(double fatorDeAjuste) {
@@ -63,27 +122,15 @@ public class Projeto {
 	}
 
 	public double getEsforco() {
-		return esforco;
-	}
-
-	public void setEsforco(double esforco) {
-		this.esforco = esforco;
+		return this.AB * Math.pow(kaloc(), this.BB);
 	}
 
 	public double getTempo() {
-		return tempo;
-	}
-
-	public void setTempo(double tempo) {
-		this.tempo = tempo;
+		return kaloc() * Math.pow(getEsforco(), this.DB);
 	}
 
 	public double getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(double pessoa) {
-		this.pessoa = pessoa;
+		return getEsforco() / getTempo();
 	}
 
 	public double getHh() {
