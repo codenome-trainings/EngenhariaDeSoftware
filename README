@@ -1,0 +1,43 @@
+/*
+	 * 
+	 * Informações importantes para o calculo
+	 * 
+	 * 1. Achar o PFB (Ponto de função bruta)
+	 * 	  Que é obtido pela fórmula
+	 *    PFB = PF1 + PF2;
+	 *    
+	 *    Esses dados vem das funções:
+	 *    	- PF1:
+	 *    		- defineValorPontoDeFuncaoInterno();
+	 *    		- defineValorPontoDeFuncaoExterno();
+	 *    	- PF2:
+	 *    		- definePontoDeFuncaoDeEntradasExternas();
+	 *    		- definePontoDeFuncaoDeSaidasExternas();
+	 *    		- definePontoDeFuncaoDeConsultasExternas();
+	 * 
+	 * Após esses dados serem obtidos, é só aplicar a formula para achar o Ponto de Função Bruta:
+	 * PFB = PF1 + PF2;
+	 * 
+	 * 
+	 * 2. Avaliar NIT é só pegar o tota de toda avaiação manual.
+	 *    Como esse total vamos achar o VFA (Valor Fator de Ajustes). Através da formula:
+	 *    VFA = (NIT * 0.01) + 0.65;
+	 *    
+	 *    O getFatorDeAjuste() ira retornar essa formula.
+	 * 
+	 * 3. Ponto de Função
+	 *    Com os valores anteriores, conseguimos agora achar o ponto de função através da fórmula:
+	 *    PF = PFB * VFA;
+	 * 
+	 * 3. COCOMO
+	 * Ao entrar no processo do COCOMO. Ele servirá para achar nosso esforço. E para isso, precisaremos dos dados anteriores.
+	 * 
+	 * KLOC = PF * QSM;
+	 * 
+	 * Com o KLOC vamos encontrar nossos fatores do Cocomo:
+	 * 
+	 * Esforço = AB * KALOC^(BB)
+	 * tempo = KALOC * esforço^(DB)
+	 * Pessoas = esforço/tempo
+	 * 
+	 */

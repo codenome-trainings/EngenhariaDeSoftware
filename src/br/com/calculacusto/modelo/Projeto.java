@@ -25,50 +25,14 @@ public class Projeto {
 	private final double BB = 1.05;
 	private final double DB = 0.38;
 	
+	/*
+	 * Impostos para calculo de venda
+	 */
+	private final double IMPOSTO = 45;
+	private final double SEGURANCA = 20;
+	
 	private LinguagemDeProgramacao linguagemDeProgramacao;
 	private List<AvaliacaoNit> avaliacoesNit = new ArrayList<>();
-	
-	
-	/*
-	 * 
-	 * Informações importantes para o calculo
-	 * 
-	 * 1. Achar o PFB (Ponto de função bruta)
-	 * 	  Que é obtido pela fórmula
-	 *    PFB = PF1 + PF2;
-	 *    
-	 *    Esses dados vem das funções:
-	 *    	- PF1:
-	 *    		- defineValorPontoDeFuncaoInterno();
-	 *    		- defineValorPontoDeFuncaoExterno();
-	 *    	- PF2:
-	 *    		- definePontoDeFuncaoDeEntradasExternas();
-	 *    		- definePontoDeFuncaoDeSaidasExternas();
-	 *    		- definePontoDeFuncaoDeConsultasExternas();
-	 * 
-	 * Após esses dados serem obtidos, é só aplicar a formula para achar o Ponto de Função Bruta:
-	 * PFB = PF1 + PF2;
-	 * 
-	 * 
-	 * 2. Avaliar NIT é só pegar o tota de toda avaiação manual.
-	 *    Como esse total vamos achar o VFA (Valor Fator de Ajustes). Através da formula:
-	 *    VFA = (NIT * 0.01) + 0.65;
-	 *    
-	 *    O getFatorDeAjuste() ira retornar essa formula.
-	 * 
-	 * 3. Ponto de Função
-	 *    Com os valores anteriores, conseguimos agora achar o ponto de função através da fórmula:
-	 *    PF = PFB * VFA;
-	 * 
-	 * 3. COCOMO
-	 * Ao entrar no processo do COCOMO. Ele servirá para achar nosso esforço. E para isso, precisaremos dos dados anteriores.
-	 * 
-	 * KLOC = PF * QSM;
-	 * 
-	 * 
-	 * 
-	 */
-	
 	
 	//Preciso ainda implementar a busca da soma dos valores pf1 e pf2
 	public double calculaPontoDeFuncaoBruta() {
@@ -80,6 +44,17 @@ public class Projeto {
 		return getPontoDeFuncao() * this.linguagemDeProgramacao.getMediana(); //Por exemplo!!!
 	}
 	
+	public double calculaHoraHomem() {
+		return (this.hh * (getTempo() * 8));
+	}
+	
+	public double calculaImpostoSobreHoraHomem() {
+		return (calculaHoraHomem() / 100) * this.IMPOSTO;
+	}
+	
+	public double calculaSegurancaSobreImposto() {
+		return (calculaHoraHomem() / 100) * this.SEGURANCA;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -150,7 +125,7 @@ public class Projeto {
 	}
 
 	public double getValorDeVenda() {
-		return valorDeVenda;
+		return calculaHoraHomem() + calculaImpostoSobreHoraHomem() + this.calculaSegurancaSobreImposto();
 	}
 
 	public void setValorDeVenda(double valorDeVenda) {
@@ -158,7 +133,7 @@ public class Projeto {
 	}
 
 	public double getLucro() {
-		return lucro;
+		return (getValorDeVenda() - calculaHoraHomem());
 	}
 
 	public void setLucro(double lucro) {
