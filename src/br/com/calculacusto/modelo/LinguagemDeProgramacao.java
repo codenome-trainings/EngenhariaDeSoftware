@@ -17,7 +17,6 @@ public class LinguagemDeProgramacao {
 	}
 	
 	public LinguagemDeProgramacao() {
-		
 	}
 
 	public String getNome() {

@@ -12,7 +12,6 @@ public class DadosFuncao {
 	
 	// Tabela de Identificação da Complexidade dos dados
 	public String calculaComplexidadeDeDados() {
-
 		if (this.registro == 1) {
 			if (this.itens >= 1 && this.itens <= 19) {
 				return "Simples";
@@ -38,9 +37,7 @@ public class DadosFuncao {
 				return "Complexa";
 			}
 		}
-
 		return null;
-
 	}
 
 	// ALI: Arquivo Lógico Interno
