@@ -148,7 +148,6 @@ public class Menu {
 					tipoDeArquivo = "CE";
 				} else {
 					System.out.println("Tipo de arquivo não selecionado");
-					continue;
 				}
 			}
 			
@@ -158,9 +157,7 @@ public class Menu {
 			
 			System.out.println("Deseja adicionar mais classes: [1]SIM | [2]NÃO");
 			escolha = entrada.nextInt();
-			if(escolha == 2) {
-				continua = false;
-			}
+			if(escolha == 2) continua = false;
 		}
 		
 	}
@@ -196,7 +193,6 @@ public class Menu {
 					break;
 				} else {
 					System.out.println("Tipo de arquivo não selecionado");
-					continue;
 				}
 			}
 			

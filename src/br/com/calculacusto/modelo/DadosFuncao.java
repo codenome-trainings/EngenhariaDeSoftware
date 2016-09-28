@@ -1,13 +1,22 @@
 package br.com.calculacusto.modelo;
 
-import java.util.Vector;
-
 public class DadosFuncao {
 
 	private String nome;
 	private int registro;
 	private int itens;
 	private int pontoDeFuncao;
+	
+	private Dados dados;
+
+	public DadosFuncao(String nome, int registro, int itens) {
+		this.nome = nome;
+		this.registro = registro;
+		this.itens = itens;
+	}
+	
+	public DadosFuncao() {
+	}
 
 	public String getNome() {
 		return nome;
@@ -40,5 +49,14 @@ public class DadosFuncao {
 	public void setPontoDeFuncao(int pontoDeFuncao) {
 		this.pontoDeFuncao = pontoDeFuncao;
 	}
+	
+	public Dados getDados() {
+		return dados;
+	}
+
+	public void setDados(Dados dados) {
+		this.dados = dados;
+	}
+
 
 }
