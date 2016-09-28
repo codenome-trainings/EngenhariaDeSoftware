@@ -1,4 +1,4 @@
-package br.com.calculacusto.teste;
+package br.com.calculacusto.modelo.teste;
 
 import static org.junit.Assert.*;
 
