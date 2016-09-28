@@ -3,6 +3,8 @@ package br.com.calculacusto.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.calculacusto.dao.LinguagemDeProgramacaoDao;
+
 public class Projeto {
 
 	private String nome;
@@ -17,6 +19,12 @@ public class Projeto {
 	private double custo;
 	private double valorDeVenda;
 	private double lucro;
+	
+	/*
+	 * Tive que pegar essas duas variáveis para tratar o QSM
+	 */
+	private String nomeDaLinguagem;
+	private String medida;
 	
 	/*
 	 * Cosntantes essenciais para o cocomo
@@ -41,7 +49,24 @@ public class Projeto {
 	}
 	
 	public double kaloc() {
-		return getPontoDeFuncao() * this.linguagemDeProgramacao.getMediana(); //Por exemplo!!!
+		
+		double valorDaMedida = 0;
+		this.nomeDaLinguagem = this.nomeDaLinguagem.toLowerCase();
+		
+		LinguagemDeProgramacaoDao linguagemDao = new LinguagemDeProgramacaoDao();
+		this.linguagemDeProgramacao = linguagemDao.buscaPorNome(nomeDaLinguagem);
+		
+		if(this.medida.equals("media")) {
+			valorDaMedida = this.linguagemDeProgramacao.getMedia();
+		} else if(this.medida.equals("mediana")) {
+			valorDaMedida =  this.linguagemDeProgramacao.getMediana();
+		} else if(this.medida.equals("menor")) {
+			valorDaMedida =  this.linguagemDeProgramacao.getMenor();
+		} else if(this.medida.equals("maior")) {
+			valorDaMedida =  this.linguagemDeProgramacao.getMaior();
+		}
+		
+		return getPontoDeFuncao() * valorDaMedida;
 	}
 	
 	public double calculaHoraHomem() {
@@ -146,6 +171,22 @@ public class Projeto {
 
 	public void setLinguagemDeProgramacao(LinguagemDeProgramacao linguagemDeProgramacao) {
 		this.linguagemDeProgramacao = linguagemDeProgramacao;
+	}
+	
+	public String getNomeDaLinguagem() {
+		return nomeDaLinguagem;
+	}
+	
+	public void setNomeDaLinguagem(String nomeDaLinguagem) {
+		this.nomeDaLinguagem = nomeDaLinguagem;
+	}
+	
+	public String getMedida() {
+		return medida;
+	}
+	
+	public void setMedida(String medida) {
+		this.medida = medida;
 	}
 	
 
