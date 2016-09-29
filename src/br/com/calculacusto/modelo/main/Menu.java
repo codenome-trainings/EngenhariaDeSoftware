@@ -6,15 +6,18 @@ import java.util.Scanner;
 
 import br.com.calculacusto.dao.LinguagemDeProgramacaoDao;
 import br.com.calculacusto.modelo.Dados;
+import br.com.calculacusto.modelo.Funcao;
 import br.com.calculacusto.modelo.LinguagemDeProgramacao;
 import br.com.calculacusto.modelo.Projeto;
+import br.com.calculacusto.modelo.TipoDado;
+import br.com.calculacusto.modelo.TipoFuncao;
 
 public class Menu {
 	
 	Scanner entrada = new Scanner(System.in);
 	Projeto projeto = new Projeto();
 
-	public void menuPrincipal() {
+	public void menuPrincipal() throws Exception {
 		
 		int escolha;
 		System.out.println("-----MENU PRINCIPAL-----");
@@ -56,8 +59,23 @@ public class Menu {
 		menuPrincipal();
 	}
 	
-	public void relatorio() {
-
+	public void relatorio() throws Exception {
+		System.out.println("------------");		
+		System.out.println("RELATÓRIO");
+		System.out.println("------------");
+		System.out.println("Ponto de Função Bruta: " + projeto.calculaPontoDeFuncaoBruta());
+		System.out.println("Nivel de Influência Total: " + projeto.getNit());
+		System.out.println("Ponto de Função: " + projeto.getPontoDeFuncao());
+		System.out.println("Valor Fator de Ajuste: " + projeto.getFatorDeAjuste());
+		System.out.println("Linhas aproximadas: " + projeto.kaloc());
+		System.out.println("Esforço: " + projeto.getEsforco());
+		System.out.println("Tempo: " + projeto.getTempo());
+		System.out.println("Pessoas: " + projeto.getPessoa());
+		System.out.println("Hora Homem: " + projeto.getHh());
+		System.out.println("Custo: " + projeto.getCusto());
+		System.out.println("Valor de venda: " + projeto.getValorDeVenda());
+		System.out.println("Lucro: " + projeto.getLucro());
+		System.out.println("------------");
 	}
 
 	public void dadosFinanceiros() {
@@ -113,13 +131,13 @@ public class Menu {
 		return soma;
 	}
 
-	public void adicionaESC() {
+	public void adicionaESC() throws Exception {
 
 		String nomeDoCaso;
 		int registros;
 		int itens;
-		String tipoDeArquivo;
-		
+		TipoFuncao tipoDeArquivo = null;
+		int pontoDeFuncao;
 		boolean continua = true;
 		
 		while(continua) {
@@ -138,21 +156,20 @@ public class Menu {
 				System.out.println("3. Consulta Externa");
 				escolha = entrada.nextInt();
 				if(escolha == 1) {
-					tipoDeArquivo = "EE";
+					tipoDeArquivo = TipoFuncao.ENTRADA;
 					break;
 				} else if(escolha == 2) {
-					tipoDeArquivo = "SE";
+					tipoDeArquivo = TipoFuncao.SAIDA;
 					break;
 				} else if (escolha == 3) {
-					tipoDeArquivo = "CE";
+					tipoDeArquivo = TipoFuncao.CONSULTA;
 				} else {
-					System.out.println("Tipo de arquivo não selecionado");
+					throw new Exception("Tipo de Arquivo ESC Não selecionado!");
 				}
 			}
 			
-			/*
-			 * Adicionar esses dados no BDD Simuladon
-			 */
+			Funcao funcao = new Funcao(nomeDoCaso, registros, itens, tipoDeArquivo);
+			funcao.adicionaPontoDeFuncao(funcao.calculaPontoDeFuncao());
 			
 			System.out.println("Deseja adicionar mais classes: [1]SIM | [2]NÃO");
 			escolha = entrada.nextInt();
@@ -160,13 +177,13 @@ public class Menu {
 		}
 	}
 
-	public void adicionaDados() {
+	public void adicionaDados() throws Exception {
 
 		String nomeDaClasse;
 		int registros;
 		int itens;
-		String tipoDeArquivo = null;
-		
+		TipoDado tipoDeArquivo = null;
+		int pontoDeFuncao;
 		boolean continua = true;
 		
 		while(continua) {
@@ -184,19 +201,18 @@ public class Menu {
 				System.out.println("2. Arquivo Lógico Externo");
 				escolha = entrada.nextInt();
 				if(escolha == 1) {
-					tipoDeArquivo = "ALI";
+					tipoDeArquivo = TipoDado.INTERNO;
 					break;
 				} else if(escolha == 2) {
-					tipoDeArquivo = "ALE";
+					tipoDeArquivo = TipoDado.EXTERNO;
 					break;
 				} else {
-					System.out.println("Tipo de arquivo não selecionado");
+					throw new Exception("Tipo de arquivo ALI e AIE não selecionado");
 				}
 			}
 			
-			
-			
-			new Dados(nomeDaClasse, registros, itens, tipoDeArquivo);
+			Dados dados = new Dados(nomeDaClasse, registros, itens, tipoDeArquivo);
+			dados.adicionaPontoDeFuncao(dados.calculaPontoDeFuncao());
 			
 			System.out.println("Deseja adicionar mais classes: [1]SIM | [2]NÃO");
 			escolha = entrada.nextInt();

@@ -19,6 +19,7 @@ public class Projeto {
 	private double custo;
 	private double valorDeVenda;
 	private double lucro;
+	private DadosFuncao dadosFuncao;
 	
 	/*
 	 * Tive que pegar essas duas variáveis para tratar o QSM
@@ -38,8 +39,7 @@ public class Projeto {
 	
 	//Preciso ainda implementar a busca da soma dos valores pf1 e pf2
 	public double calculaPontoDeFuncaoBruta() {
-		double pf1 = 0, pf2 = 0;
-		return pf1 + pf2;
+		return this.dadosFuncao.getDados().totalPontoDeFuncaoPF1() + this.dadosFuncao.getFuncao().totalPontoDeFuncaoPF2();
 	}
 	
 	public double kaloc() throws Exception {

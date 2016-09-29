@@ -1,9 +1,44 @@
 package br.com.calculacusto.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Funcao extends DadosFuncao {
 	
-
-
+	private List<Integer> pontosDeFuncoes = new ArrayList<>();
+	private TipoFuncao tipoDeArquivo;
+	
+	public Funcao(String nomeDaClasse, int registros, int itens, TipoFuncao tipoDeArquivo) {
+		setNome(nomeDaClasse);
+		setRegistro(registros);
+		setItens(itens);
+		this.tipoDeArquivo = tipoDeArquivo;
+	}
+	
+	public void adicionaPontoDeFuncao(int pontoDeFuncao) {
+		this.pontosDeFuncoes.add(pontoDeFuncao);
+	}
+	
+	public int calculaPontoDeFuncao() throws Exception {
+		if (this.tipoDeArquivo == TipoFuncao.ENTRADA) {
+			return definePontoDeFuncaoDeEntradasExternas();
+		} else if(this.tipoDeArquivo == TipoFuncao.SAIDA){
+			return definePontoDeFuncaoDeSaidasExternas();
+		} else if(this.tipoDeArquivo == TipoFuncao.CONSULTA) {
+			return definePontoDeFuncaoDeConsultasExternas();
+		} else {
+			throw new Exception("Tipo de arquivo não definido!");
+		}
+	}
+	
+	public int totalPontoDeFuncaoPF2() {
+		int total = 0;
+		for (Integer pontoDeFuncao : pontosDeFuncoes) {
+			total += (int) pontoDeFuncao;
+		}
+		return total;
+	}
+	
 	// Tabela de Identificação da complexidade de Entradas Externas
 	public Classificacao calculaComplexidadeDeEntradasExternas() {
 
