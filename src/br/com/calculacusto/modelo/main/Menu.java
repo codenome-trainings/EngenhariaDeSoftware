@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import br.com.calculacusto.dao.LinguagemDeProgramacaoDao;
+import br.com.calculacusto.modelo.Dados;
 import br.com.calculacusto.modelo.LinguagemDeProgramacao;
 import br.com.calculacusto.modelo.Projeto;
 
@@ -57,8 +58,6 @@ public class Menu {
 	
 	public void relatorio() {
 
-		
-		
 	}
 
 	public void dadosFinanceiros() {
@@ -152,14 +151,13 @@ public class Menu {
 			}
 			
 			/*
-			 * Adicionar esses dados no vetor
+			 * Adicionar esses dados no BDD Simuladon
 			 */
 			
 			System.out.println("Deseja adicionar mais classes: [1]SIM | [2]NÃO");
 			escolha = entrada.nextInt();
 			if(escolha == 2) continua = false;
 		}
-		
 	}
 
 	public void adicionaDados() {
@@ -167,14 +165,14 @@ public class Menu {
 		String nomeDaClasse;
 		int registros;
 		int itens;
-		String tipoDeArquivo;
+		String tipoDeArquivo = null;
 		
 		boolean continua = true;
 		
 		while(continua) {
 			System.out.printf("Nome da Classe: ");
 			nomeDaClasse = entrada.nextLine();
-			System.out.printf("Registros: ");
+			System.out.printf("Quantidades registros: ");
 			registros = entrada.nextInt();
 			System.out.printf("Itens");
 			itens = entrada.nextInt();
@@ -196,9 +194,9 @@ public class Menu {
 				}
 			}
 			
-			/*
-			 * Adicionar esses dados no vetor
-			 */
+			
+			
+			new Dados(nomeDaClasse, registros, itens, tipoDeArquivo);
 			
 			System.out.println("Deseja adicionar mais classes: [1]SIM | [2]NÃO");
 			escolha = entrada.nextInt();
@@ -217,7 +215,7 @@ public class Menu {
 		LinguagemDeProgramacao linguagem;
 		
 		boolean achaLinguagem = false;
-		while(!achaLinguagem){
+		while(!achaLinguagem) {
 			System.out.printf("Linguagem: ");
 			String busca = entrada.nextLine();
 			if(linguagemDeProgramacaoDao.buscaPorNome(busca).equals(busca)) {

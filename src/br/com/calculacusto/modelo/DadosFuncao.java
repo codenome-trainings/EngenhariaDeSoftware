@@ -6,7 +6,18 @@ public class DadosFuncao {
 	private int registro;
 	private int itens;
 	private int pontoDeFuncao;
+
+	private int referencia;
+	private Classificacao classificacao;
 	
+	public Classificacao getClassificacao() {
+		return classificacao;
+	}
+
+	public void setClassificacao(Classificacao classificacao) {
+		this.classificacao = classificacao;
+	}
+
 	private Dados dados;
 
 	public DadosFuncao(String nome, int registro, int itens) {
@@ -14,7 +25,7 @@ public class DadosFuncao {
 		this.registro = registro;
 		this.itens = itens;
 	}
-	
+
 	public DadosFuncao() {
 	}
 
@@ -49,7 +60,7 @@ public class DadosFuncao {
 	public void setPontoDeFuncao(int pontoDeFuncao) {
 		this.pontoDeFuncao = pontoDeFuncao;
 	}
-	
+
 	public Dados getDados() {
 		return dados;
 	}
@@ -58,5 +69,12 @@ public class DadosFuncao {
 		this.dados = dados;
 	}
 
+	public int getReferencia() {
+		return referencia;
+	}
+
+	public void setReferencia(int referencia) {
+		this.referencia = referencia;
+	}
 
 }

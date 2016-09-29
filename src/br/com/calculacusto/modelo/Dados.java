@@ -1,35 +1,51 @@
 package br.com.calculacusto.modelo;
 
-public class Dados {
+import br.com.calculacusto.dao.DadosFuncaoDao;
+import br.com.calculacusto.dao.LinguagemDeProgramacaoDao;
+
+public class Dados extends DadosFuncao {
 	
-	private int registro;
-	private int itens;
+	private String tipoDeArquivo;
 	
-	// Tabela de Identificação da Complexidade dos dados
-		public String calculaComplexidadeDeDados() {
-			if (this.registro == 1) {
-				if (this.itens >= 1 && this.itens <= 19) {
-					return "Simples";
-				} else if (this.itens >= 20 && this.itens <= 50) {
-					return "Simples";
-				} else if (this.itens > 50) {
-					return "Média";
+	DadosFuncaoDao dadosFuncaoDao = new DadosFuncaoDao();
+	DadosFuncao dadosFuncao;
+	
+	public Dados(String nomeDaClasse, int registros, int itens, String tipoDeArquivo) {
+		setNome(nomeDaClasse);
+		setRegistro(registros);
+		setItens(itens);
+		this.tipoDeArquivo = tipoDeArquivo;
+	}
+	
+	public void escolheTipoDeArquivo() {
+		
+	}
+
+		// Tabela de Identificação da Complexidade dos dados
+		public Classificacao calculaComplexidadeDeDados() {
+			if (getRegistro() == 1) {
+				if (getItens() >= 1 && getItens() <= 19) {
+					return Classificacao.SIMPLES;
+				} else if (getItens() >= 20 && getItens() <= 50) {
+					return Classificacao.SIMPLES;
+				} else if (getItens() > 50) {
+					return Classificacao.MEDIO;
 				}
-			} else if (this.registro >= 2 && this.registro <= 5) {
-				if (this.itens >= 1 && this.itens <= 19) {
-					return "Simples";
-				} else if (this.itens >= 20 && this.itens <= 50) {
-					return "Média";
-				} else if (this.itens > 50) {
-					return "Complexa";
+			} else if (getRegistro() >= 2 && getRegistro() <= 5) {
+				if (getItens() >= 1 && getItens() <= 19) {
+					return Classificacao.SIMPLES;
+				} else if (getItens() >= 20 && getItens() <= 50) {
+					return Classificacao.MEDIO;
+				} else if (getItens() > 50) {
+					return Classificacao.COMPLEXO;
 				}
-			} else if (this.registro >= 6) {
-				if (this.itens >= 1 && this.itens <= 19) {
-					return "Média";
-				} else if (this.itens >= 20 && this.itens <= 50) {
-					return "Complexa";
-				} else if (this.itens > 50) {
-					return "Complexa";
+			} else if (getRegistro() >= 6) {
+				if (getItens() >= 1 && getItens() <= 19) {
+					return Classificacao.MEDIO;
+				} else if (getItens() >= 20 && getItens() <= 50) {
+					return Classificacao.COMPLEXO;
+				} else if (getItens() > 50) {
+					return Classificacao.COMPLEXO;
 				}
 			}
 			return null;
@@ -38,11 +54,11 @@ public class Dados {
 		// ALI: Arquivo Lógico Interno
 		public int defineValorPontoDeFuncaoInterno() {
 
-			if (this.calculaComplexidadeDeDados().equals("Simples")) {
+			if (this.calculaComplexidadeDeDados().equals(Classificacao.SIMPLES)) {
 				return 7;
-			} else if (this.calculaComplexidadeDeDados().equals("Média")) {
+			} else if (this.calculaComplexidadeDeDados().equals(Classificacao.MEDIO)) {
 				return 10;
-			} else if (this.calculaComplexidadeDeDados().equals("Complexa")) {
+			} else if (this.calculaComplexidadeDeDados().equals(Classificacao.COMPLEXO)) {
 				return 15;
 			}
 
@@ -51,11 +67,11 @@ public class Dados {
 
 		// ALE: Arquivo de Interface Externa
 		public int defineValorPontoDeFuncaoExterno() {
-			if (this.calculaComplexidadeDeDados().equals("Simples")) {
+			if (this.calculaComplexidadeDeDados().equals(Classificacao.SIMPLES)) {
 				return 5;
-			} else if (this.calculaComplexidadeDeDados().equals("Média")) {
+			} else if (this.calculaComplexidadeDeDados().equals(Classificacao.MEDIO)) {
 				return 7;
-			} else if (this.calculaComplexidadeDeDados().equals("Complexa")) {
+			} else if (this.calculaComplexidadeDeDados().equals(Classificacao.COMPLEXO)) {
 				return 10;
 			}
 

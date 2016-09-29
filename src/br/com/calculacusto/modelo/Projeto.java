@@ -26,13 +26,7 @@ public class Projeto {
 	private String nomeDaLinguagem;
 	private String medida;
 	
-	/*
-	 * Cosntantes essenciais para o cocomo
-	 */
-	private final double AB = 2.4;
-	private final double BB = 1.05;
-	private final double DB = 0.38;
-	
+
 	/*
 	 * Impostos para calculo de venda
 	 */
@@ -48,7 +42,7 @@ public class Projeto {
 		return pf1 + pf2;
 	}
 	
-	public double kaloc() {
+	public double kaloc() throws Exception {
 		
 		double valorDaMedida = 0;
 		this.nomeDaLinguagem = this.nomeDaLinguagem.toLowerCase();
@@ -64,20 +58,22 @@ public class Projeto {
 			valorDaMedida =  this.linguagemDeProgramacao.getMenor();
 		} else if(this.medida.equals("maior")) {
 			valorDaMedida =  this.linguagemDeProgramacao.getMaior();
+		} else {
+			throw new Exception("Tipo de medida par calculo do KLOC inesperado!");
 		}
 		
 		return getPontoDeFuncao() * valorDaMedida;
 	}
 	
-	public double calculaHoraHomem() {
+	public double calculaHoraHomem() throws Exception {
 		return (this.hh * (getTempo() * 8));
 	}
 	
-	public double calculaImpostoSobreHoraHomem() {
+	public double calculaImpostoSobreHoraHomem() throws Exception {
 		return (calculaHoraHomem() / 100) * this.IMPOSTO;
 	}
 	
-	public double calculaSegurancaSobreImposto() {
+	public double calculaSegurancaSobreImposto() throws Exception {
 		return (calculaHoraHomem() / 100) * this.SEGURANCA;
 	}
 	
@@ -121,15 +117,15 @@ public class Projeto {
 		this.qsm = qsm;
 	}
 
-	public double getEsforco() {
-		return this.AB * Math.pow(kaloc(), this.BB);
+	public double getEsforco() throws Exception {
+		return Cocomo.AB * Math.pow(kaloc(), Cocomo.BB);
 	}
 
-	public double getTempo() {
-		return kaloc() * Math.pow(getEsforco(), this.DB);
+	public double getTempo() throws Exception {
+		return kaloc() * Math.pow(getEsforco(), Cocomo.DB);
 	}
 
-	public double getPessoa() {
+	public double getPessoa() throws Exception {
 		return getEsforco() / getTempo();
 	}
 
@@ -149,7 +145,7 @@ public class Projeto {
 		this.custo = custo;
 	}
 
-	public double getValorDeVenda() {
+	public double getValorDeVenda() throws Exception {
 		return calculaHoraHomem() + calculaImpostoSobreHoraHomem() + this.calculaSegurancaSobreImposto();
 	}
 
@@ -157,7 +153,7 @@ public class Projeto {
 		this.valorDeVenda = valorDeVenda;
 	}
 
-	public double getLucro() {
+	public double getLucro() throws Exception {
 		return (getValorDeVenda() - calculaHoraHomem());
 	}
 

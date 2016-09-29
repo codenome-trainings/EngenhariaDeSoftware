@@ -1,96 +1,79 @@
 package br.com.calculacusto.modelo;
 
-public class Funcao {
+public class Funcao extends DadosFuncao {
 	
-	private int referencia;
-	private int itens;
+
 
 	// Tabela de Identificação da complexidade de Entradas Externas
-	public String calculaComplexidadeDeEntradasExternas() {
+	public Classificacao calculaComplexidadeDeEntradasExternas() {
 
-		if (this.referencia == 0 || this.referencia == 1) {
-			if (this.itens >= 1 && this.itens <= 4) {
-				return "Simples";
-			} else if (this.itens >= 5 && this.itens <= 15) {
-				return "Simples";
-			} else if (this.itens >= 16) {
-				return "Média";
+		if (getReferencia() == 0 || getReferencia() == 1) {
+			if (getItens() >= 1 && getItens() <= 4) {
+				return Classificacao.SIMPLES;
+			} else if (getItens() >= 5 && getItens() <= 15) {
+				return Classificacao.SIMPLES;
+			} else if (getItens() >= 16) {
+				return Classificacao.MEDIO;
 			}
-		} else if (this.referencia == 2) {
-			if (this.itens >= 1 && this.itens <= 4) {
-				return "Simples";
-			} else if (this.itens >= 5 && this.itens <= 15) {
-				return "Média";
-			} else if (this.itens >= 16) {
-				return "Complexa";
+		} else if (getReferencia() == 2) {
+			if (getItens() >= 1 && getItens() <= 4) {
+				return Classificacao.SIMPLES;
+			} else if (getItens() >= 5 && getItens() <= 15) {
+				return Classificacao.MEDIO;
+			} else if (getItens() >= 16) {
+				return Classificacao.COMPLEXO;
 			}
-		} else if (this.referencia > 3) {
-			if (this.itens >= 1 && this.itens <= 4) {
-				return "Média";
-			} else if (this.itens >= 5 && this.itens <= 15) {
-				return "Complexa";
-			} else if (this.itens >= 16) {
-				return "Complexa";
+		} else if (getReferencia() > 3) {
+			if (getItens() >= 1 && getItens() <= 4) {
+				return Classificacao.MEDIO;
+			} else if (getItens() >= 5 && getItens() <= 15) {
+				return Classificacao.COMPLEXO;
+			} else if (getItens() >= 16) {
+				return Classificacao.COMPLEXO;
 			}
 		}
 		return null;
 	}
 
 	// Tabela de identificação da complexidade de saídas e consultas externas
-	public String calculaComplexidadeDeSaidasEConsultasExternas() {
-		if (this.referencia == 0 || this.referencia == 1) {
-			if (this.itens >= 1 && this.itens <= 5) {
-				return "Simples";
-			} else if (this.itens >= 6 && this.itens <= 19) {
-				return "Simples";
-			} else if (this.itens >= 20) {
-				return "Média";
+	public Classificacao calculaComplexidadeDeSaidasEConsultasExternas() {
+		if (getReferencia() == 0 || getReferencia() == 1) {
+			if (getItens() >= 1 && getItens() <= 5) {
+				return Classificacao.SIMPLES;
+			} else if (getItens() >= 6 && getItens() <= 19) {
+				return Classificacao.SIMPLES;
+			} else if (getItens() >= 20) {
+				return Classificacao.MEDIO;
 			}
-		} else if (this.referencia == 2 || this.referencia == 3) {
-			if (this.itens >= 1 && this.itens <= 5) {
-				return "Simples";
-			} else if (this.itens >= 6 && this.itens <= 19) {
-				return "Média";
-			} else if (this.itens >= 20) {
-				return "Complexa";
+		} else if (getReferencia() == 2 || getReferencia() == 3) {
+			if (getItens() >= 1 && getItens() <= 5) {
+				return Classificacao.SIMPLES;
+			} else if (getItens() >= 6 && getItens() <= 19) {
+				return Classificacao.MEDIO;
+			} else if (getItens() >= 20) {
+				return Classificacao.COMPLEXO;
 			}
-		} else if (this.referencia > 3) {
-			if (this.itens >= 1 && this.itens <= 5) {
-				return "Média";
-			} else if (this.itens >= 6 && this.itens <= 19) {
-				return "Complexa";
-			} else if (this.itens >= 20) {
-				return "Complexa";
+		} else if (getReferencia() > 3) {
+			if (getItens() >= 1 && getItens() <= 5) {
+				return Classificacao.MEDIO;
+			} else if (getItens() >= 6 && getItens() <= 19) {
+				return Classificacao.COMPLEXO;
+			} else if (getItens() >= 20) {
+				return Classificacao.COMPLEXO;
 			}
 		}
 
 		return null;
 	}
-	
-	public int getReferencia() {
-		return referencia;
-	}
-
-	public void setReferencia(int referencia) {
-		this.referencia = referencia;
-	}
-
-	public int getItens() {
-		return itens;
-	}
-
-	public void setItens(int itens) {
-		this.itens = itens;
-	}
 
 	// EE: Entradas Externas
 	public int definePontoDeFuncaoDeEntradasExternas() {
 
-		if (calculaComplexidadeDeEntradasExternas().equals("Simples")) {
+		if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.SIMPLES)) {
 			return 3;
-		} else if (calculaComplexidadeDeEntradasExternas().equals("Média")) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.MEDIO)) {
 			return 4;
-		} else if (calculaComplexidadeDeEntradasExternas().equals("Complexa")) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.COMPLEXO)) {
 			return 6;
 		}
 
@@ -100,11 +83,11 @@ public class Funcao {
 	//SE: Saidas Externas
 	public int definePontoDeFuncaoDeSaidasExternas() {
 
-		if (calculaComplexidadeDeEntradasExternas().equals("Simples")) {
+		if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.SIMPLES)) {
 			return 4;
-		} else if (calculaComplexidadeDeEntradasExternas().equals("Média")) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.MEDIO)) {
 			return 5;
-		} else if (calculaComplexidadeDeEntradasExternas().equals("Complexa")) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.COMPLEXO)) {
 			return 7;
 		}
 
@@ -114,11 +97,11 @@ public class Funcao {
 	//CE: Consutlas externas
 	public int definePontoDeFuncaoDeConsultasExternas() {
 
-		if (calculaComplexidadeDeEntradasExternas().equals("Simples")) {
+		if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.SIMPLES)) {
 			return 3;
-		} else if (calculaComplexidadeDeEntradasExternas().equals("Média")) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.MEDIO)) {
 			return 4;
-		} else if (calculaComplexidadeDeEntradasExternas().equals("Complexa")) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.COMPLEXO)) {
 			return 6;
 		}
 
