@@ -14,11 +14,11 @@ import br.com.calculacusto.modelo.TipoFuncao;
 
 public class Menu {
 	
-	Scanner entrada = new Scanner(System.in);
+	Scanner entrada;
 	Projeto projeto = new Projeto();
 
 	public void menuPrincipal() throws Exception {
-		
+		entrada = new Scanner(System.in);
 		int escolha;
 		System.out.println("-----MENU PRINCIPAL-----");
 		System.out.println("1. Configuração do projeto");
@@ -79,13 +79,14 @@ public class Menu {
 	}
 
 	public void dadosFinanceiros() {
+		entrada = new Scanner(System.in);
 		System.out.println("----Dados Financeiros----");
 		System.out.printf("Digite o HH do Profissional: ");
 		projeto.setHh(entrada.nextDouble());
 	}
 
 	public void PreencheNit() {
-		
+		entrada = new Scanner(System.in);
 		List<Double> nits = new ArrayList<>();
 		
 		System.out.println("Comunicação de Dados");
@@ -132,7 +133,7 @@ public class Menu {
 	}
 
 	public void adicionaESC() throws Exception {
-
+		entrada = new Scanner(System.in);
 		String nomeDoCaso;
 		int registros;
 		int itens;
@@ -178,7 +179,7 @@ public class Menu {
 	}
 
 	public void adicionaDados() throws Exception {
-
+		entrada = new Scanner(System.in);
 		String nomeDaClasse;
 		int registros;
 		int itens;
@@ -223,9 +224,10 @@ public class Menu {
 	}
 
 	public void configuracaoDoProjeto() {
-		
+		entrada = new Scanner(System.in);
 		System.out.printf("Nome do projeto: ");
-		projeto.setNome(entrada.nextLine());
+		String nomeDoProjeto = entrada.nextLine();
+		projeto.setNome(nomeDoProjeto);
 		
 		LinguagemDeProgramacaoDao linguagemDeProgramacaoDao = new LinguagemDeProgramacaoDao();
 		LinguagemDeProgramacao linguagem;
