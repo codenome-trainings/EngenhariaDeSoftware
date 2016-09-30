@@ -223,7 +223,7 @@ public class Menu {
 		}
 	}
 
-	public void configuracaoDoProjeto() {
+	public void configuracaoDoProjeto() throws Exception {
 		entrada = new Scanner(System.in);
 		System.out.printf("Nome do projeto: ");
 		String nomeDoProjeto = entrada.nextLine();
@@ -236,10 +236,13 @@ public class Menu {
 		while(!achaLinguagem) {
 			System.out.printf("Linguagem: ");
 			String busca = entrada.nextLine();
-			if(linguagemDeProgramacaoDao.buscaPorNome(busca).equals(busca)) {
+			linguagem = linguagemDeProgramacaoDao.buscaPorNome(busca);
+			if(linguagem != null) {
 				System.out.println("Linguagem Encontrada");
 				projeto.setNomeDaLinguagem(busca);
 				achaLinguagem = true;
+			} else {
+				throw new Exception("Linguagem não encontrada");
 			}
 		}
 		

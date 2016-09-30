@@ -40,61 +40,61 @@ public class Funcao extends DadosFuncao {
 	}
 	
 	// Tabela de Identificação da complexidade de Entradas Externas
-	public Classificacao calculaComplexidadeDeEntradasExternas() {
+	public Complexidade calculaComplexidadeDeEntradasExternas() {
 
 		if (getReferencia() == 0 || getReferencia() == 1) {
 			if (getItens() >= 1 && getItens() <= 4) {
-				return Classificacao.SIMPLES;
+				return Complexidade.SIMPLES;
 			} else if (getItens() >= 5 && getItens() <= 15) {
-				return Classificacao.SIMPLES;
+				return Complexidade.SIMPLES;
 			} else if (getItens() >= 16) {
-				return Classificacao.MEDIO;
+				return Complexidade.MEDIO;
 			}
 		} else if (getReferencia() == 2) {
 			if (getItens() >= 1 && getItens() <= 4) {
-				return Classificacao.SIMPLES;
+				return Complexidade.SIMPLES;
 			} else if (getItens() >= 5 && getItens() <= 15) {
-				return Classificacao.MEDIO;
+				return Complexidade.MEDIO;
 			} else if (getItens() >= 16) {
-				return Classificacao.COMPLEXO;
+				return Complexidade.COMPLEXO;
 			}
 		} else if (getReferencia() > 3) {
 			if (getItens() >= 1 && getItens() <= 4) {
-				return Classificacao.MEDIO;
+				return Complexidade.MEDIO;
 			} else if (getItens() >= 5 && getItens() <= 15) {
-				return Classificacao.COMPLEXO;
+				return Complexidade.COMPLEXO;
 			} else if (getItens() >= 16) {
-				return Classificacao.COMPLEXO;
+				return Complexidade.COMPLEXO;
 			}
 		}
 		return null;
 	}
 
 	// Tabela de identificação da complexidade de saídas e consultas externas
-	public Classificacao calculaComplexidadeDeSaidasEConsultasExternas() {
+	public Complexidade calculaComplexidadeDeSaidasEConsultasExternas() {
 		if (getReferencia() == 0 || getReferencia() == 1) {
 			if (getItens() >= 1 && getItens() <= 5) {
-				return Classificacao.SIMPLES;
+				return Complexidade.SIMPLES;
 			} else if (getItens() >= 6 && getItens() <= 19) {
-				return Classificacao.SIMPLES;
+				return Complexidade.SIMPLES;
 			} else if (getItens() >= 20) {
-				return Classificacao.MEDIO;
+				return Complexidade.MEDIO;
 			}
 		} else if (getReferencia() == 2 || getReferencia() == 3) {
 			if (getItens() >= 1 && getItens() <= 5) {
-				return Classificacao.SIMPLES;
+				return Complexidade.SIMPLES;
 			} else if (getItens() >= 6 && getItens() <= 19) {
-				return Classificacao.MEDIO;
+				return Complexidade.MEDIO;
 			} else if (getItens() >= 20) {
-				return Classificacao.COMPLEXO;
+				return Complexidade.COMPLEXO;
 			}
 		} else if (getReferencia() > 3) {
 			if (getItens() >= 1 && getItens() <= 5) {
-				return Classificacao.MEDIO;
+				return Complexidade.MEDIO;
 			} else if (getItens() >= 6 && getItens() <= 19) {
-				return Classificacao.COMPLEXO;
+				return Complexidade.COMPLEXO;
 			} else if (getItens() >= 20) {
-				return Classificacao.COMPLEXO;
+				return Complexidade.COMPLEXO;
 			}
 		}
 
@@ -104,11 +104,11 @@ public class Funcao extends DadosFuncao {
 	// EE: Entradas Externas
 	public int definePontoDeFuncaoDeEntradasExternas() {
 
-		if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.SIMPLES)) {
+		if (calculaComplexidadeDeEntradasExternas().equals(Complexidade.SIMPLES)) {
 			return 3;
-		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.MEDIO)) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Complexidade.MEDIO)) {
 			return 4;
-		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.COMPLEXO)) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Complexidade.COMPLEXO)) {
 			return 6;
 		}
 
@@ -118,11 +118,11 @@ public class Funcao extends DadosFuncao {
 	//SE: Saidas Externas
 	public int definePontoDeFuncaoDeSaidasExternas() {
 
-		if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.SIMPLES)) {
+		if (calculaComplexidadeDeEntradasExternas().equals(Complexidade.SIMPLES)) {
 			return 4;
-		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.MEDIO)) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Complexidade.MEDIO)) {
 			return 5;
-		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.COMPLEXO)) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Complexidade.COMPLEXO)) {
 			return 7;
 		}
 
@@ -132,15 +132,15 @@ public class Funcao extends DadosFuncao {
 	//CE: Consutlas externas
 	public int definePontoDeFuncaoDeConsultasExternas() {
 
-		if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.SIMPLES)) {
+		if (calculaComplexidadeDeEntradasExternas().equals(Complexidade.SIMPLES)) {
 			return 3;
-		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.MEDIO)) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Complexidade.MEDIO)) {
 			return 4;
-		} else if (calculaComplexidadeDeEntradasExternas().equals(Classificacao.COMPLEXO)) {
+		} else if (calculaComplexidadeDeEntradasExternas().equals(Complexidade.COMPLEXO)) {
 			return 6;
 		}
 
-		return 0;
+		return 0;	
 	}
 	
 	

@@ -1,6 +1,6 @@
 package br.com.calculacusto.modelo;
 
-public enum Classificacao {
+public enum Complexidade {
 	SIMPLES,
 	MEDIO,
 	COMPLEXO;

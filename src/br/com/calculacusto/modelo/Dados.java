@@ -38,30 +38,30 @@ public class Dados extends DadosFuncao {
 	}
 
 	// Tabela de Identificação da Complexidade dos dados
-	public Classificacao calculaComplexidadeDeDados() {
+	public Complexidade calculaComplexidadeDeDados() {
 		if (getRegistro() == 1) {
 			if (getItens() >= 1 && getItens() <= 19) {
-				return Classificacao.SIMPLES;
+				return Complexidade.SIMPLES;
 			} else if (getItens() >= 20 && getItens() <= 50) {
-				return Classificacao.SIMPLES;
+				return Complexidade.SIMPLES;
 			} else if (getItens() > 50) {
-				return Classificacao.MEDIO;
+				return Complexidade.MEDIO;
 			}
 		} else if (getRegistro() >= 2 && getRegistro() <= 5) {
 			if (getItens() >= 1 && getItens() <= 19) {
-				return Classificacao.SIMPLES;
+				return Complexidade.SIMPLES;
 			} else if (getItens() >= 20 && getItens() <= 50) {
-				return Classificacao.MEDIO;
+				return Complexidade.MEDIO;
 			} else if (getItens() > 50) {
-				return Classificacao.COMPLEXO;
+				return Complexidade.COMPLEXO;
 			}
 		} else if (getRegistro() >= 6) {
 			if (getItens() >= 1 && getItens() <= 19) {
-				return Classificacao.MEDIO;
+				return Complexidade.MEDIO;
 			} else if (getItens() >= 20 && getItens() <= 50) {
-				return Classificacao.COMPLEXO;
+				return Complexidade.COMPLEXO;
 			} else if (getItens() > 50) {
-				return Classificacao.COMPLEXO;
+				return Complexidade.COMPLEXO;
 			}
 		}
 		return null;
@@ -70,11 +70,11 @@ public class Dados extends DadosFuncao {
 	// ALI: Arquivo Lógico Interno
 	public int defineValorPontoDeFuncaoInterno() {
 
-		if (this.calculaComplexidadeDeDados().equals(Classificacao.SIMPLES)) {
+		if (this.calculaComplexidadeDeDados().equals(Complexidade.SIMPLES)) {
 			return 7;
-		} else if (this.calculaComplexidadeDeDados().equals(Classificacao.MEDIO)) {
+		} else if (this.calculaComplexidadeDeDados().equals(Complexidade.MEDIO)) {
 			return 10;
-		} else if (this.calculaComplexidadeDeDados().equals(Classificacao.COMPLEXO)) {
+		} else if (this.calculaComplexidadeDeDados().equals(Complexidade.COMPLEXO)) {
 			return 15;
 		}
 
@@ -83,11 +83,11 @@ public class Dados extends DadosFuncao {
 
 	// ALE: Arquivo de Interface Externa
 	public int defineValorPontoDeFuncaoExterno() {
-		if (this.calculaComplexidadeDeDados().equals(Classificacao.SIMPLES)) {
+		if (this.calculaComplexidadeDeDados().equals(Complexidade.SIMPLES)) {
 			return 5;
-		} else if (this.calculaComplexidadeDeDados().equals(Classificacao.MEDIO)) {
+		} else if (this.calculaComplexidadeDeDados().equals(Complexidade.MEDIO)) {
 			return 7;
-		} else if (this.calculaComplexidadeDeDados().equals(Classificacao.COMPLEXO)) {
+		} else if (this.calculaComplexidadeDeDados().equals(Complexidade.COMPLEXO)) {
 			return 10;
 		}
 

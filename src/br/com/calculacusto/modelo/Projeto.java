@@ -8,7 +8,6 @@ import br.com.calculacusto.dao.LinguagemDeProgramacaoDao;
 public class Projeto {
 
 	private String nome;
-	private double pontoDeFuncao;
 	private double fatorDeAjuste;
 	private int nit;
 	private double qsm;
@@ -19,7 +18,10 @@ public class Projeto {
 	private double custo;
 	private double valorDeVenda;
 	private double lucro;
-	private DadosFuncao dadosFuncao;
+	
+	
+	private PontoDeFuncaoNaoAjustado pontoDeFuncaoNaoAjustado = new PontoDeFuncaoNaoAjustado();
+	
 	
 	/*
 	 * Tive que pegar essas duas variáveis para tratar o QSM
@@ -183,6 +185,14 @@ public class Projeto {
 	
 	public void setMedida(String medida) {
 		this.medida = medida;
+	}
+
+	public PontoDeFuncaoNaoAjustado getPontoDeFuncaoNaoAjustado() {
+		return pontoDeFuncaoNaoAjustado;
+	}
+
+	public void setPontoDeFuncaoNaoAjustado(PontoDeFuncaoNaoAjustado pontoDeFuncaoNaoAjustado) {
+		this.pontoDeFuncaoNaoAjustado = pontoDeFuncaoNaoAjustado;
 	}
 	
 
