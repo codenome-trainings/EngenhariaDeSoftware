@@ -9,8 +9,7 @@ public class Projeto {
 
 	private String nome;
 	private double fatorDeAjuste;
-	private int nit;
-	private double qsm;
+	private double pontoDeFuncao;
 	private double esforco;
 	private double tempo;
 	private double pessoa;
@@ -18,65 +17,39 @@ public class Projeto {
 	private double custo;
 	private double valorDeVenda;
 	private double lucro;
-	
+
+	private MedidaDaLinguagem medidaDaLinguagem;
+	private String nomeDaLinguagem;
 	
 	private PontoDeFuncaoNaoAjustado pontoDeFuncaoNaoAjustado = new PontoDeFuncaoNaoAjustado();
-	
-	
-	/*
-	 * Tive que pegar essas duas variáveis para tratar o QSM
-	 */
-	private String nomeDaLinguagem;
-	private String medida;
-	
-
-	/*
-	 * Impostos para calculo de venda
-	 */
-	private final double IMPOSTO = 45;
-	private final double SEGURANCA = 20;
-	
+	private AvaliacaoNit avaliacaoNit = new AvaliacaoNit();
 	private LinguagemDeProgramacao linguagemDeProgramacao;
-	private List<AvaliacaoNit> avaliacoesNit = new ArrayList<>();
-	
-	//Preciso ainda implementar a busca da soma dos valores pf1 e pf2
-	public double calculaPontoDeFuncaoBruta() {
-		return this.dadosFuncao.getDados().totalPontoDeFuncaoPF1() + this.dadosFuncao.getFuncao().totalPontoDeFuncaoPF2();
+
+	public double kloc() {
+		return getPontoDeFuncao() * valorDaLinguagem();
 	}
 	
-	public double kaloc() throws Exception {
+	public double valorDaLinguagem () {
 		
-		double valorDaMedida = 0;
-		this.nomeDaLinguagem = this.nomeDaLinguagem.toLowerCase();
+		LinguagemDeProgramacaoDao linguagemDeProgramacaoDao = new LinguagemDeProgramacaoDao();
 		
-		LinguagemDeProgramacaoDao linguagemDao = new LinguagemDeProgramacaoDao();
-		this.linguagemDeProgramacao = linguagemDao.buscaPorNome(nomeDaLinguagem);
-		
-		if(this.medida.equals("media")) {
-			valorDaMedida = this.linguagemDeProgramacao.getMedia();
-		} else if(this.medida.equals("mediana")) {
-			valorDaMedida =  this.linguagemDeProgramacao.getMediana();
-		} else if(this.medida.equals("menor")) {
-			valorDaMedida =  this.linguagemDeProgramacao.getMenor();
-		} else if(this.medida.equals("maior")) {
-			valorDaMedida =  this.linguagemDeProgramacao.getMaior();
-		} else {
-			throw new Exception("Tipo de medida par calculo do KLOC inesperado!");
+		if (this.medidaDaLinguagem == MedidaDaLinguagem.MEDIA) {
+			return linguagemDeProgramacaoDao.buscaPorNome(this.nomeDaLinguagem).getMedia();
 		}
 		
-		return getPontoDeFuncao() * valorDaMedida;
-	}
-	
-	public double calculaHoraHomem() throws Exception {
-		return (this.hh * (getTempo() * 8));
-	}
-	
-	public double calculaImpostoSobreHoraHomem() throws Exception {
-		return (calculaHoraHomem() / 100) * this.IMPOSTO;
-	}
-	
-	public double calculaSegurancaSobreImposto() throws Exception {
-		return (calculaHoraHomem() / 100) * this.SEGURANCA;
+		if (this.medidaDaLinguagem == MedidaDaLinguagem.MEDIANA) {
+			return linguagemDeProgramacaoDao.buscaPorNome(this.nomeDaLinguagem).getMediana();
+		}
+		
+		if (this.medidaDaLinguagem == MedidaDaLinguagem.MENOR) {
+			return linguagemDeProgramacaoDao.buscaPorNome(this.nomeDaLinguagem).getMenor();
+		}
+		
+		if (this.medidaDaLinguagem == MedidaDaLinguagem.MAIOR) {
+			return linguagemDeProgramacaoDao.buscaPorNome(this.nomeDaLinguagem).getMaior();
+		}
+		
+		return 0;
 	}
 	
 	public String getNome() {
@@ -87,48 +60,52 @@ public class Projeto {
 		this.nome = nome;
 	}
 
-	public double getPontoDeFuncao() {
-		return calculaPontoDeFuncaoBruta() * getFatorDeAjuste();
-	}
-
-	public void setPontoDeFuncao(int pontoDeFuncao) {
-		this.pontoDeFuncao = pontoDeFuncao;
-	}
-
 	public double getFatorDeAjuste() {
-		return ((getNit() * 0.01) + 0.65);
+		return ((avaliacaoNit.getNota() * 0.01) + 0.65);
 	}
 
 	public void setFatorDeAjuste(double fatorDeAjuste) {
 		this.fatorDeAjuste = fatorDeAjuste;
 	}
 
-	public int getNit() {
-		return nit;
+	public double getPontoDeFuncao() {
+		return getFatorDeAjuste() * pontoDeFuncaoNaoAjustado.valor();
 	}
 
-	public void setNit(int nit) {
-		this.nit = nit;
+	public void setPontoDeFuncao(double pontoDeFuncao) {
+		this.pontoDeFuncao = pontoDeFuncao;
 	}
 
-	public double getQsm() {
-		return qsm;
+	public AvaliacaoNit getAvaliacaoNit() {
+		return avaliacaoNit;
 	}
 
-	public void setQsm(double qsm) {
-		this.qsm = qsm;
+	public void setAvaliacaoNit(AvaliacaoNit avaliacaoNit) {
+		this.avaliacaoNit = avaliacaoNit;
 	}
 
-	public double getEsforco() throws Exception {
-		return Cocomo.AB * Math.pow(kaloc(), Cocomo.BB);
+	public double getEsforco() {
+		return Cocomo.AB * Math.pow(kloc(), Cocomo.BB);
 	}
 
-	public double getTempo() throws Exception {
-		return kaloc() * Math.pow(getEsforco(), Cocomo.DB);
+	public void setEsforco(double esforco) {
+		this.esforco = esforco;
 	}
 
-	public double getPessoa() throws Exception {
+	public double getTempo() {
+		return kloc() * Math.pow(getEsforco(), Cocomo.DB);
+	}
+
+	public void setTempo(double tempo) {
+		this.tempo = tempo;
+	}
+
+	public double getPessoa() {
 		return getEsforco() / getTempo();
+	}
+
+	public void setPessoa(double pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	public double getHh() {
@@ -140,51 +117,32 @@ public class Projeto {
 	}
 
 	public double getCusto() {
-		return custo;
+		return ((getTempo() * 7) * 8) * getHh();
 	}
 
 	public void setCusto(double custo) {
 		this.custo = custo;
 	}
+	
+	public double calculaPorcentagem(double valor, double porcentagem) {
+		return ((valor / 100) * porcentagem);
+	}
 
-	public double getValorDeVenda() throws Exception {
-		return calculaHoraHomem() + calculaImpostoSobreHoraHomem() + this.calculaSegurancaSobreImposto();
+	public double getValorDeVenda() {
+		// Soma de 45% de valor de venda + 25% de segurança e valor da marca.
+		return getCusto() + calculaPorcentagem(getCusto(), 45) + calculaPorcentagem(getCusto(), 25);
 	}
 
 	public void setValorDeVenda(double valorDeVenda) {
 		this.valorDeVenda = valorDeVenda;
 	}
 
-	public double getLucro() throws Exception {
-		return (getValorDeVenda() - calculaHoraHomem());
+	public double getLucro() {
+		return getValorDeVenda() - getLucro();
 	}
 
 	public void setLucro(double lucro) {
 		this.lucro = lucro;
-	}
-
-	public LinguagemDeProgramacao getLinguagemDeProgramacao() {
-		return linguagemDeProgramacao;
-	}
-
-	public void setLinguagemDeProgramacao(LinguagemDeProgramacao linguagemDeProgramacao) {
-		this.linguagemDeProgramacao = linguagemDeProgramacao;
-	}
-	
-	public String getNomeDaLinguagem() {
-		return nomeDaLinguagem;
-	}
-	
-	public void setNomeDaLinguagem(String nomeDaLinguagem) {
-		this.nomeDaLinguagem = nomeDaLinguagem;
-	}
-	
-	public String getMedida() {
-		return medida;
-	}
-	
-	public void setMedida(String medida) {
-		this.medida = medida;
 	}
 
 	public PontoDeFuncaoNaoAjustado getPontoDeFuncaoNaoAjustado() {
@@ -194,6 +152,13 @@ public class Projeto {
 	public void setPontoDeFuncaoNaoAjustado(PontoDeFuncaoNaoAjustado pontoDeFuncaoNaoAjustado) {
 		this.pontoDeFuncaoNaoAjustado = pontoDeFuncaoNaoAjustado;
 	}
-	
+
+	public LinguagemDeProgramacao getLinguagemDeProgramacao() {
+		return linguagemDeProgramacao;
+	}
+
+	public void setLinguagemDeProgramacao(LinguagemDeProgramacao linguagemDeProgramacao) {
+		this.linguagemDeProgramacao = linguagemDeProgramacao;
+	}
 
 }

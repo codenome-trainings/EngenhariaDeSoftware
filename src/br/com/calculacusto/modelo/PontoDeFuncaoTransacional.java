@@ -5,10 +5,39 @@ public class PontoDeFuncaoTransacional {
 	private int numeroDeArquivosReferenciados;
 	private int numeroDeItensDeDadosReferenciados;
 	private TipoFuncao tipoFuncao;
-	
-			
-	public Complexidade complexidadeFuncional() {
+
+	public int valorDoPontoDeFuncao() {
 		
+		if (this.tipoFuncao == TipoFuncao.ENTRADA) {
+			return definePontoDeFuncaoDeEntradasExternas();
+		}
+		
+		if (this.tipoFuncao == TipoFuncao.SAIDA) {
+			return definePontoDeFuncaoDeSaidasExternas();
+		}
+		
+		if (this.tipoFuncao == TipoFuncao.CONSULTA) {
+			return definePontoDeFuncaoDeConsultasExternas();
+		}
+		
+		return 0;
+	}
+
+	public Complexidade complexidadeFuncional() {
+
+		if (this.tipoFuncao == TipoFuncao.ENTRADA) {
+			return complexidadeFuncionalDeEntradaExterna();
+		}
+
+		if ((this.tipoFuncao == TipoFuncao.SAIDA) || (this.tipoFuncao == TipoFuncao.CONSULTA)) {
+			return complexidadeFuncionalDeSaidasConsultasExternas();
+		}
+
+		return null;
+	}
+
+	public Complexidade complexidadeFuncionalDeEntradaExterna() {
+
 		if (this.numeroDeArquivosReferenciados == 1) {
 			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 19) {
 				return Complexidade.SIMPLES;
@@ -18,7 +47,7 @@ public class PontoDeFuncaoTransacional {
 				return Complexidade.MEDIO;
 			}
 		}
-		
+
 		if (this.numeroDeArquivosReferenciados >= 2 && this.numeroDeArquivosReferenciados <= 5) {
 			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 19) {
 				return Complexidade.SIMPLES;
@@ -28,7 +57,7 @@ public class PontoDeFuncaoTransacional {
 				return Complexidade.COMPLEXO;
 			}
 		}
-		
+
 		if (this.numeroDeArquivosReferenciados >= 6) {
 			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 19) {
 				return Complexidade.MEDIO;
@@ -41,8 +70,89 @@ public class PontoDeFuncaoTransacional {
 
 		return null;
 	}
-	
-	public int valorDoPontoDeFuncao() {
+
+	public Complexidade complexidadeFuncionalDeSaidasConsultasExternas() {
+
+		if (this.numeroDeArquivosReferenciados == 0 || this.numeroDeArquivosReferenciados == 1) {
+			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 5) {
+				return Complexidade.SIMPLES;
+			} else if (this.numeroDeItensDeDadosReferenciados >= 6 && this.numeroDeItensDeDadosReferenciados <= 19) {
+				return Complexidade.SIMPLES;
+			} else if (this.numeroDeItensDeDadosReferenciados >= 20) {
+				return Complexidade.MEDIO;
+			}
+		} else if (this.numeroDeArquivosReferenciados == 2 || this.numeroDeArquivosReferenciados == 3) {
+			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 5) {
+				return Complexidade.SIMPLES;
+			} else if (this.numeroDeItensDeDadosReferenciados >= 6 && this.numeroDeItensDeDadosReferenciados <= 19) {
+				return Complexidade.MEDIO;
+			} else if (this.numeroDeItensDeDadosReferenciados >= 20) {
+				return Complexidade.COMPLEXO;
+			}
+		} else if (this.numeroDeArquivosReferenciados > 3) {
+			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 5) {
+				return Complexidade.MEDIO;
+			} else if (this.numeroDeItensDeDadosReferenciados >= 6 && this.numeroDeItensDeDadosReferenciados <= 19) {
+				return Complexidade.COMPLEXO;
+			} else if (this.numeroDeItensDeDadosReferenciados >= 20) {
+				return Complexidade.COMPLEXO;
+			}
+		}
+
+		return null;
+	}
+
+	// EE: Entradas Externas
+	public int definePontoDeFuncaoDeEntradasExternas() {
+
+		if (complexidadeFuncionalDeEntradaExterna() == Complexidade.SIMPLES) {
+			return 3;
+		}
+		
+		if (complexidadeFuncionalDeEntradaExterna() == Complexidade.MEDIO) {
+			return 4;
+		}
+		
+		if (complexidadeFuncionalDeEntradaExterna() == Complexidade.COMPLEXO) {
+			return 6;
+		}
+
+		return 0;
+	}
+
+	// SE: Saidas Externas
+	public int definePontoDeFuncaoDeSaidasExternas() {
+
+		if (complexidadeFuncionalDeSaidasConsultasExternas() == Complexidade.SIMPLES) {
+			return 4;
+		}
+		
+		if (complexidadeFuncionalDeSaidasConsultasExternas() == Complexidade.MEDIO) {
+			return 5;
+		}
+		
+		if (complexidadeFuncionalDeSaidasConsultasExternas() == Complexidade.COMPLEXO) {
+			return 7;
+		}
+
+		return 0;
+	}
+
+	// CE: Consutlas externas
+	public int definePontoDeFuncaoDeConsultasExternas() {
+
+		if (complexidadeFuncionalDeSaidasConsultasExternas() == Complexidade.SIMPLES) {
+			return 3;
+		}
+		
+		if (complexidadeFuncionalDeSaidasConsultasExternas() == Complexidade.MEDIO) {
+			return 4;
+		}
+		
+		if (complexidadeFuncionalDeSaidasConsultasExternas() == Complexidade.COMPLEXO) {
+			return 6;
+		}
+
 		return 0;
 	}
 

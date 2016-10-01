@@ -4,18 +4,85 @@ import br.com.calculacusto.modelo.Complexidade;
 import br.com.calculacusto.modelo.TipoDado;
 
 public class PontoDeFuncaoDeDados {
-	
+
 	private String nomeDaClasse;
 	private int numeroDeRegistrosLogicos;
 	private int numeroDeItensDeDadosReferenciados;
 	private TipoDado tipoDado;
-	
-	public Complexidade complexidadeFuncional() {
-		//Fazer Calculo de complexidade
-		return null;
+
+	public int valorDoPontoDeFuncao() {
+		
+		if (this.tipoDado == TipoDado.INTERNO) {
+			return defineValorPontoDeFuncaoInterno();
+		}
+		
+		if (this.tipoDado == TipoDado.EXTERNO) {
+			return defineValorPontoDeFuncaoExterno();
+		}
+		
+		return 0;
 	}
 	
-	public int valorDoPontoDeFuncao() {
+	public Complexidade complexidadeFuncional() {
+		if (this.numeroDeRegistrosLogicos == 1) {
+			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 19) {
+				return Complexidade.SIMPLES;
+			} else if (this.numeroDeItensDeDadosReferenciados >= 20 && this.numeroDeItensDeDadosReferenciados <= 50) {
+				return Complexidade.SIMPLES;
+			} else if (this.numeroDeItensDeDadosReferenciados > 50) {
+				return Complexidade.MEDIO;
+			}
+		} else if (this.numeroDeRegistrosLogicos >= 2 && this.numeroDeRegistrosLogicos <= 5) {
+			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 19) {
+				return Complexidade.SIMPLES;
+			} else if (this.numeroDeItensDeDadosReferenciados >= 20 && this.numeroDeItensDeDadosReferenciados <= 50) {
+				return Complexidade.MEDIO;
+			} else if (this.numeroDeItensDeDadosReferenciados > 50) {
+				return Complexidade.COMPLEXO;
+			}
+		} else if (this.numeroDeRegistrosLogicos >= 6) {
+			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 19) {
+				return Complexidade.MEDIO;
+			} else if (this.numeroDeItensDeDadosReferenciados >= 20 && this.numeroDeItensDeDadosReferenciados <= 50) {
+				return Complexidade.COMPLEXO;
+			} else if (this.numeroDeItensDeDadosReferenciados > 50) {
+				return Complexidade.COMPLEXO;
+			}
+		}
+		return null;
+	}
+
+	public int defineValorPontoDeFuncaoInterno() {
+
+		if (this.complexidadeFuncional() == Complexidade.SIMPLES) {
+			return 7;
+		}
+		
+		if (this.complexidadeFuncional() == Complexidade.MEDIO) {
+			return 10;
+		}
+		
+		if (this.complexidadeFuncional() == Complexidade.COMPLEXO) {
+			return 15;
+		}
+
+		return 0;
+	}
+
+	public int defineValorPontoDeFuncaoExterno() {
+		
+		if (this.complexidadeFuncional() == Complexidade.SIMPLES) {
+			return 5;
+		} 
+		
+		if (this.complexidadeFuncional() == Complexidade.MEDIO) {
+			return 7;
+		}
+		
+		if (this.complexidadeFuncional() == Complexidade.COMPLEXO) {
+			return 10;
+		}
+
 		return 0;
 	}
 
