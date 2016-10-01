@@ -1,7 +1,4 @@
-package br.com.calculacusto.dao;
-
-import br.com.calculacusto.modelo.Complexidade;
-import br.com.calculacusto.modelo.TipoDado;
+package br.com.calculacusto.modelo;
 
 public class PontoDeFuncaoDeDados {
 

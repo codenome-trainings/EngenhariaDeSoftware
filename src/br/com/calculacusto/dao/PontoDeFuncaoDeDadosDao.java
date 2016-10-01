@@ -3,6 +3,8 @@ package br.com.calculacusto.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.calculacusto.modelo.PontoDeFuncaoDeDados;
+
 public class PontoDeFuncaoDeDadosDao {
 	
 	private static List<PontoDeFuncaoDeDados> pontosDeFuncoesDeDados = new ArrayList<>();

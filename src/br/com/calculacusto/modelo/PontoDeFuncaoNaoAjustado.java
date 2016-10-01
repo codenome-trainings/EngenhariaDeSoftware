@@ -3,8 +3,6 @@ package br.com.calculacusto.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.calculacusto.dao.PontoDeFuncaoDeDados;
-
 public class PontoDeFuncaoNaoAjustado {
 	
 	private List<PontoDeFuncaoDeDados> pontosDeFuncoesDeDados = new ArrayList<>();
@@ -15,13 +13,17 @@ public class PontoDeFuncaoNaoAjustado {
 	 * SERIA O PFB
 	 */
 	public int valor() {
+		
 		int totalPontoDeFuncao = 0;
+		
 		for (PontoDeFuncaoDeDados pontoDeFuncaoDeDados : pontosDeFuncoesDeDados) {
 			totalPontoDeFuncao += pontoDeFuncaoDeDados.valorDoPontoDeFuncao();
 		}
+		
 		for (PontoDeFuncaoTransacional pontoDeFuncaoTransacional : pontosDeFuncoesTransacionais) {
 			totalPontoDeFuncao += pontoDeFuncaoTransacional.valorDoPontoDeFuncao();
 		}
+		
 		return totalPontoDeFuncao;
 	}
 
