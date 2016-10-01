@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import br.com.calculacusto.dao.LinguagemDeProgramacaoDao;
-import br.com.calculacusto.modelo.Dados;
-import br.com.calculacusto.modelo.Funcao;
+
 import br.com.calculacusto.modelo.LinguagemDeProgramacao;
 import br.com.calculacusto.modelo.Projeto;
 import br.com.calculacusto.modelo.TipoDado;
@@ -50,7 +49,7 @@ public class Menu {
 			dadosFinanceiros();
 			break;
 		case 6:
-			relatorio();
+//			relatorio();
 		default:
 			System.out.println("Opção inválida. Tente novamente...");
 				
@@ -59,24 +58,24 @@ public class Menu {
 		menuPrincipal();
 	}
 	
-	public void relatorio() throws Exception {
-		System.out.println("------------");		
-		System.out.println("RELATÓRIO");
-		System.out.println("------------");
-		System.out.println("Ponto de Função Bruta: " + projeto.calculaPontoDeFuncaoBruta());
-		System.out.println("Nivel de Influência Total: " + projeto.getNit());
-		System.out.println("Ponto de Função: " + projeto.getPontoDeFuncao());
-		System.out.println("Valor Fator de Ajuste: " + projeto.getFatorDeAjuste());
-		System.out.println("Linhas aproximadas: " + projeto.kaloc());
-		System.out.println("Esforço: " + projeto.getEsforco());
-		System.out.println("Tempo: " + projeto.getTempo());
-		System.out.println("Pessoas: " + projeto.getPessoa());
-		System.out.println("Hora Homem: " + projeto.getHh());
-		System.out.println("Custo: " + projeto.getCusto());
-		System.out.println("Valor de venda: " + projeto.getValorDeVenda());
-		System.out.println("Lucro: " + projeto.getLucro());
-		System.out.println("------------");
-	}
+//	public void relatorio() throws Exception {
+//		System.out.println("------------");		
+//		System.out.println("RELATÓRIO");
+//		System.out.println("------------");
+//		System.out.println("Ponto de Função Bruta: " + projeto.calculaPontoDeFuncaoBruta());
+//		System.out.println("Nivel de Influência Total: " + projeto.getNit());
+//		System.out.println("Ponto de Função: " + projeto.getPontoDeFuncao());
+//		System.out.println("Valor Fator de Ajuste: " + projeto.getFatorDeAjuste());
+//		System.out.println("Linhas aproximadas: " + projeto.kaloc());
+//		System.out.println("Esforço: " + projeto.getEsforco());
+//		System.out.println("Tempo: " + projeto.getTempo());
+//		System.out.println("Pessoas: " + projeto.getPessoa());
+//		System.out.println("Hora Homem: " + projeto.getHh());
+//		System.out.println("Custo: " + projeto.getCusto());
+//		System.out.println("Valor de venda: " + projeto.getValorDeVenda());
+//		System.out.println("Lucro: " + projeto.getLucro());
+//		System.out.println("------------");
+//	}
 
 	public void dadosFinanceiros() {
 		entrada = new Scanner(System.in);
@@ -116,7 +115,7 @@ public class Menu {
 		System.out.println("Facilidade de Mudanças");
 		nits.add(entrada.nextDouble());
 		
-		projeto.setNit((int) calculaNit(nits));
+//		projeto.setNit((int) calculaNit(nits));
 		
 		
 	}
@@ -169,8 +168,8 @@ public class Menu {
 				}
 			}
 			
-			Funcao funcao = new Funcao(nomeDoCaso, registros, itens, tipoDeArquivo);
-			funcao.adicionaPontoDeFuncao(funcao.calculaPontoDeFuncao());
+//			Funcao funcao = new Funcao(nomeDoCaso, registros, itens, tipoDeArquivo);
+//			funcao.adicionaPontoDeFuncao(funcao.calculaPontoDeFuncao());
 			
 			System.out.println("Deseja adicionar mais classes: [1]SIM | [2]NÃO");
 			escolha = entrada.nextInt();
@@ -212,8 +211,8 @@ public class Menu {
 				}
 			}
 			
-			Dados dados = new Dados(nomeDaClasse, registros, itens, tipoDeArquivo);
-			dados.adicionaPontoDeFuncao(dados.calculaPontoDeFuncao());
+//			Dados dados = new Dados(nomeDaClasse, registros, itens, tipoDeArquivo);
+//			dados.adicionaPontoDeFuncao(dados.calculaPontoDeFuncao());
 			
 			System.out.println("Deseja adicionar mais classes: [1]SIM | [2]NÃO");
 			escolha = entrada.nextInt();
@@ -239,7 +238,7 @@ public class Menu {
 			linguagem = linguagemDeProgramacaoDao.buscaPorNome(busca);
 			if(linguagem != null) {
 				System.out.println("Linguagem Encontrada");
-				projeto.setNomeDaLinguagem(busca);
+//				projeto.setNomeDaLinguagem(busca);
 				achaLinguagem = true;
 			} else {
 				throw new Exception("Linguagem não encontrada");
@@ -257,16 +256,16 @@ public class Menu {
 		
 		switch(escolha) {
 		case 1:
-			projeto.setMedida("media");
+//			projeto.setMedida("media");
 			break;
 		case 2:
-			projeto.setMedida("mediana");
+//			projeto.setMedida("mediana");
 			break;
 		case 3:
-			projeto.setMedida("menor");
+//			projeto.setMedida("menor");
 			break;
 		case 4:
-			projeto.setMedida("maior");
+//			projeto.setMedida("maior");
 			break;
 		default:
 			System.out.println("Opção inválida!");

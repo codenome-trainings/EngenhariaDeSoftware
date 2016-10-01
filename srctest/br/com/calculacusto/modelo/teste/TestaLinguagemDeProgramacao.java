@@ -12,6 +12,7 @@ public class TestaLinguagemDeProgramacao {
 
 	LinguagemDeProgramacao linguagem;
 	LinguagemDeProgramacaoDao linguagemDao;
+	
 	@Before
 	public void setUp() throws Exception {
 		linguagemDao = new LinguagemDeProgramacaoDao();

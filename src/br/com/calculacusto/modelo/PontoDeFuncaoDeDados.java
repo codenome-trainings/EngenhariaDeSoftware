@@ -6,6 +6,25 @@ public class PontoDeFuncaoDeDados {
 	private int numeroDeRegistrosLogicos;
 	private int numeroDeItensDeDadosReferenciados;
 	private TipoDado tipoDado;
+	
+	public PontoDeFuncaoDeDados(String nomeDaClasse, int numeroDeRegistrosLogicos, int numeroDeItensDeDadosReferenciados, TipoDado tipoDado) {
+		this.nomeDaClasse = nomeDaClasse;
+		this.numeroDeRegistrosLogicos = numeroDeRegistrosLogicos;
+		this.numeroDeItensDeDadosReferenciados = numeroDeItensDeDadosReferenciados;
+		this.tipoDado = tipoDado;
+	}
+	
+	public PontoDeFuncaoDeDados(int numeroDeRegistrosLogicos, int numeroDeItensDeDadosReferenciados) {
+		this.numeroDeRegistrosLogicos = numeroDeRegistrosLogicos;
+		this.numeroDeItensDeDadosReferenciados = numeroDeItensDeDadosReferenciados;
+	}
+	
+	public PontoDeFuncaoDeDados(String nomeDaClasse) {
+		this.nomeDaClasse = nomeDaClasse;
+	}
+	
+	public PontoDeFuncaoDeDados() {
+	}
 
 	public int valorDoPontoDeFuncao() {
 		
@@ -22,25 +41,32 @@ public class PontoDeFuncaoDeDados {
 	
 	public Complexidade complexidadeFuncional() {
 		if (this.numeroDeRegistrosLogicos == 1) {
-			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 19) {
+			if (this.numeroDeItensDeDadosReferenciados >= 1 &&
+					this.numeroDeItensDeDadosReferenciados <= 19) {
 				return Complexidade.SIMPLES;
-			} else if (this.numeroDeItensDeDadosReferenciados >= 20 && this.numeroDeItensDeDadosReferenciados <= 50) {
+			} else if (this.numeroDeItensDeDadosReferenciados >= 20 &&
+					this.numeroDeItensDeDadosReferenciados <= 50) {
 				return Complexidade.SIMPLES;
 			} else if (this.numeroDeItensDeDadosReferenciados > 50) {
 				return Complexidade.MEDIO;
 			}
-		} else if (this.numeroDeRegistrosLogicos >= 2 && this.numeroDeRegistrosLogicos <= 5) {
-			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 19) {
+		} else if (this.numeroDeRegistrosLogicos >= 2 &&
+				this.numeroDeRegistrosLogicos <= 5) {
+			if (this.numeroDeItensDeDadosReferenciados >= 1 &&
+					this.numeroDeItensDeDadosReferenciados <= 19) {
 				return Complexidade.SIMPLES;
-			} else if (this.numeroDeItensDeDadosReferenciados >= 20 && this.numeroDeItensDeDadosReferenciados <= 50) {
+			} else if (this.numeroDeItensDeDadosReferenciados >= 20 &&
+					this.numeroDeItensDeDadosReferenciados <= 50) {
 				return Complexidade.MEDIO;
 			} else if (this.numeroDeItensDeDadosReferenciados > 50) {
 				return Complexidade.COMPLEXO;
 			}
 		} else if (this.numeroDeRegistrosLogicos >= 6) {
-			if (this.numeroDeItensDeDadosReferenciados >= 1 && this.numeroDeItensDeDadosReferenciados <= 19) {
+			if (this.numeroDeItensDeDadosReferenciados >= 1 &&
+					this.numeroDeItensDeDadosReferenciados <= 19) {
 				return Complexidade.MEDIO;
-			} else if (this.numeroDeItensDeDadosReferenciados >= 20 && this.numeroDeItensDeDadosReferenciados <= 50) {
+			} else if (this.numeroDeItensDeDadosReferenciados >= 20 &&
+					this.numeroDeItensDeDadosReferenciados <= 50) {
 				return Complexidade.COMPLEXO;
 			} else if (this.numeroDeItensDeDadosReferenciados > 50) {
 				return Complexidade.COMPLEXO;
