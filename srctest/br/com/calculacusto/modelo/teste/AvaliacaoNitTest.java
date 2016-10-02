@@ -40,4 +40,5 @@ public class AvaliacaoNitTest {
 		}
 		assertEquals(26.0, avaliacaoNitDao.somaNota(), 0.0001);
 	}
+	
 }
