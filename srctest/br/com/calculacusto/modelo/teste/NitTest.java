@@ -1,19 +1,26 @@
 package br.com.calculacusto.modelo.teste;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class NitTest {
+import br.com.calculacusto.dao.NitDao;
+import br.com.calculacusto.modelo.Nit;
 
+public class NitTest {
+	
+	NitDao nits;
+	
 	@Before
 	public void setUp() throws Exception {
+		nits = new NitDao();
 	}
 
 	@Test
 	public void testNitString() {
-		fail("Not yet implemented");
+		Nit nit = nits.buscaPorNome("Comunicação de Dados");
+		
 	}
 
 	@Test

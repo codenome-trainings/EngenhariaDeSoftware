@@ -24,7 +24,6 @@ private static List<Nit> nits = carregaLista();
 		nits.add(new Nit("Facilidade Operacional"));
 		nits.add(new Nit("Múltiplos Locais e Organizações do Usuário"));
 		nits.add(new Nit("Facilidade de Mudanças"));
-		
 		return nits;
 	}
 	
