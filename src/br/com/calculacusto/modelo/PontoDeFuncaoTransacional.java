@@ -1,12 +1,11 @@
 package br.com.calculacusto.modelo;
 
 public class PontoDeFuncaoTransacional {
+	
 	private String nomeDoCasoDeUso;
 	private int numeroDeArquivosReferenciados;
 	private int numeroDeItensDeDadosReferenciados;
 	private TipoFuncao tipoFuncao;
-	
-	
 	
 	public PontoDeFuncaoTransacional(String nomeDoCasoDeUso, int numeroDeArquivosReferenciados,
 			int numeroDeItensDeDadosReferenciados, TipoFuncao tipoFuncao) {

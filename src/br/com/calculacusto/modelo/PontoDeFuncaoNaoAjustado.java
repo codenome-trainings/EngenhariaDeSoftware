@@ -20,7 +20,7 @@ public class PontoDeFuncaoNaoAjustado {
 			totalPontoDeFuncao += pontoDeFuncaoDeDados.valorDoPontoDeFuncao();
 		}
 		
-		for (PontoDeFuncaoTransacional pontoDeFuncaoTransacional : pontosDeFuncoesTransacionais) {
+		for (PontoDeFuncaoTransacional pontoDeFuncaoTransacional : getPontosDeFuncoesTransacionais()) {
 			totalPontoDeFuncao += pontoDeFuncaoTransacional.valorDoPontoDeFuncao();
 		}
 		
@@ -33,6 +33,14 @@ public class PontoDeFuncaoNaoAjustado {
 
 	public void setPontosDeFuncoesDeDados(List<PontoDeFuncaoDeDados> pontosDeFuncoesDeDados) {
 		this.pontosDeFuncoesDeDados = pontosDeFuncoesDeDados;
+	}
+
+	public List<PontoDeFuncaoTransacional> getPontosDeFuncoesTransacionais() {
+		return pontosDeFuncoesTransacionais;
+	}
+
+	public void setPontosDeFuncoesTransacionais(List<PontoDeFuncaoTransacional> pontosDeFuncoesTransacionais) {
+		this.pontosDeFuncoesTransacionais = pontosDeFuncoesTransacionais;
 	}
 	
 	
