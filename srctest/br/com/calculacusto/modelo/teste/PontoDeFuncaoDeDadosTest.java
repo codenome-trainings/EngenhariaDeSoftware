@@ -370,25 +370,4 @@ public class PontoDeFuncaoDeDadosTest {
 		}
 	}
 
-	/*
-	 * TESTANDO ALGUNS GETTERS IMPORTANTES
-	 */
-	@Test
-	public void testGetNomeDaClasse() {
-		PontoDeFuncaoDeDados pontoDeFuncaoDeDados = new PontoDeFuncaoDeDados("SomaDeValores");
-		assertEquals("SomaDeValores", pontoDeFuncaoDeDados.getNomeDaClasse());
-	}
-
-	@Test
-	public void testGetNumeroDeRegistrosLogicos() {
-		PontoDeFuncaoDeDados pontoDeFuncaoDeDados = new PontoDeFuncaoDeDados(10, 15);
-		assertEquals(10, pontoDeFuncaoDeDados.getNumeroDeRegistrosLogicos());
-	}
-
-	@Test
-	public void testGetNumeroDeItensDeDadosReferenciados() {
-		PontoDeFuncaoDeDados pontoDeFuncaoDeDados = new PontoDeFuncaoDeDados(10, 15);
-		assertEquals(15, pontoDeFuncaoDeDados.getNumeroDeItensDeDadosReferenciados());
-	}
-
 }
