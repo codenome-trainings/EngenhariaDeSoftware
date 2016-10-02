@@ -2,7 +2,7 @@ package br.com.calculacusto.modelo;
 
 public class AvaliacaoNit {
 
-	private int nota;
+	private double nota;
 	
 	public AvaliacaoNit(int nota) {
 		this.nota = nota;
@@ -11,7 +11,7 @@ public class AvaliacaoNit {
 	public AvaliacaoNit() {
 	}
 
-	public int getNota() {
+	public double getNota() {
 		return nota;
 	}
 
