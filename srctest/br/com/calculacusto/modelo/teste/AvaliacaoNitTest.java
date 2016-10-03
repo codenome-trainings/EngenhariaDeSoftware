@@ -17,6 +17,7 @@ public class AvaliacaoNitTest {
 
 	@Before
 	public void setUp() throws Exception {
+		avaliacaoNitDao = new AvaliacaoNitDao();
 		avaliacaoNit = new AvaliacaoNit();
 	}
 	/*
@@ -27,7 +28,7 @@ public class AvaliacaoNitTest {
 	@Test
 	public void testAvaliacaoNitInt() {
 		
-		avaliacaoNitDao = new AvaliacaoNitDao();
+		
 		
 		for (int i = 0; i < 5; i++) {
 			avaliacaoNitDao.adiciona(new AvaliacaoNit(i));
