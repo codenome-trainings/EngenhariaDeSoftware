@@ -26,6 +26,14 @@ public class PontoDeFuncaoNaoAjustado {
 		
 		return totalPontoDeFuncao;
 	}
+	
+	public void adicionaPontoDeFuncaoDeDados(PontoDeFuncaoDeDados pontoDeFuncaoDeDados) {
+		this.pontosDeFuncoesDeDados.add(pontoDeFuncaoDeDados);
+	}
+	
+	public void adicionaPontoDeFuncaoTransacional(PontoDeFuncaoTransacional pontoDeFuncaoTransacional) {
+		this.pontosDeFuncoesTransacionais.add(pontoDeFuncaoTransacional);
+	}
 
 	public List<PontoDeFuncaoDeDados> getPontosDeFuncoesDeDados() {
 		return pontosDeFuncoesDeDados;
