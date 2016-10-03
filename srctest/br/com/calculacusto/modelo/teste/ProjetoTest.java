@@ -1,9 +1,17 @@
-package br.com.calculacusto.modelo;
+package br.com.calculacusto.modelo.teste;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import br.com.calculacusto.modelo.MedidaDaLinguagem;
+import br.com.calculacusto.modelo.PontoDeFuncaoDeDados;
+import br.com.calculacusto.modelo.PontoDeFuncaoNaoAjustado;
+import br.com.calculacusto.modelo.PontoDeFuncaoTransacional;
+import br.com.calculacusto.modelo.Projeto;
+import br.com.calculacusto.modelo.TipoDado;
+import br.com.calculacusto.modelo.TipoFuncao;
 
 public class ProjetoTest {
 	
